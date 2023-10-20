@@ -6,11 +6,11 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 
 function App() {
-  const user = useSelector((state: RootState) => state.user.currentUser);
+  const userId = useSelector((state: RootState) => state.user.currentUserId);
   return (
     <div>
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Login />} />
+        <Route path="/" element={userId !== "" ? <Home /> : <Login />} />
       </Routes>
     </div>
   );
