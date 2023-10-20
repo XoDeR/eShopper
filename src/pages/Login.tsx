@@ -2,6 +2,7 @@ import { useState, MouseEvent } from "react";
 import { useAppSelector, useAppDispatch } from "../hooks/hooks";
 import { auth, provider } from "../firebase/Firebase";
 import { signInWithPopup } from "firebase/auth";
+import { loginSuccess } from "../redux/userSlice";
 import { login } from "../redux/apiCalls";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
@@ -24,6 +25,7 @@ const Login = () => {
       .then((result) => {
         const email = result.user.email;
         if (email) {
+          dispatch(loginSuccess(result.user.uid));
           localStorage.setItem("email", email);
         } else {
           console.log("Error signing in with Google");

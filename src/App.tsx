@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useAppSelector } from "./hooks/hooks";
 import { RootState } from "./redux/store";
 import "./App.css";
@@ -11,8 +11,19 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={userId !== "" ? <Home /> : <Login />} />
+        <Route
+          path="/"
+          element={
+            userId !== "" ? <Home /> : <Navigate to="/login" replace={true} />
+          }
+        />
         <Route path="/register" element={<Register />} />
+        <Route
+          path="/login"
+          element={
+            userId !== "" ? <Navigate to="/" replace={true} /> : <Login />
+          }
+        ></Route>
       </Routes>
     </div>
   );

@@ -1,15 +1,38 @@
-import React from "react";
-
+import { useState, MouseEvent, ChangeEvent } from "react";
+import { useAppSelector, useAppDispatch } from "../hooks/hooks";
 import { Link } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/Firebase";
 import cartImage from "../assets/cart.jpg";
 
-const handleChange = (e: any) => {};
-
-const handleSubmit = async (e: any) => {
-  e.preventDefault();
-};
-
 const Register = () => {
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+
+  const dispatch = useAppDispatch();
+  const { isFetching, error } = useAppSelector((state) => state.user);
+
+  const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (inputs.email !== "" && inputs.password !== "") {
+      createUserWithEmailAndPassword(auth, inputs.email, inputs.password)
+        .then(() => {
+          console.log("Congrats!, you can now Sign In");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+        });
+    }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
   return (
     <div className="flex justify-center items-center h-screen bg-slate-200">
       <div className="flex justify-center items-center h-2/3 bg-slate-300">
@@ -32,9 +55,10 @@ const Register = () => {
               placeholder="Password"
               className="w-full border-b border-[#614623] bg-transparent py-2 my-2 outline-none focus:outline-none"
             />
-            {/* {error && <p className="text-red-700">Register failure</p>} */}
+            {error && <p className="text-red-700">Register failure</p>}
             <button
               onClick={handleSubmit}
+              disabled={isFetching}
               className="w-full bg-[#614623] text-white rounded-lg p-1 my-3"
             >
               Register
