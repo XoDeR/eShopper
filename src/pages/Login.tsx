@@ -87,7 +87,6 @@ const Login = () => {
               <p className="text-sm font-semibold text-[#614623]">
                 No account?
               </p>
-
               <Link to="/register" className="text-brown-700">
                 <button className="text-base rounded-lg p-1 my-3 bg-white font-semibold text-[#273575] border-[1px] border-[#0a444e]">
                   Sign up
