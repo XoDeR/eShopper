@@ -79,6 +79,7 @@ const Login = () => {
                 onClick={signInWithGoogle}
                 className="flex items-center justify-center w-full bg-white text-[#255f23] rounded-lg p-1 my-3 border-[1px] border-[#255f23] "
               >
+                <FcGoogle className="mr-2" />
                 Sign In with Google
               </button>
             </div>
