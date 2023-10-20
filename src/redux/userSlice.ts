@@ -1,7 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "./store";
 
-const initialState = {
-  currentUser: null,
+interface UserState {
+  currentUserId: string;
+  isFetching: boolean;
+  error: boolean;
+}
+
+const initialState: UserState = {
+  currentUserId: "",
   isFetching: false,
   error: false,
 };
@@ -13,16 +21,16 @@ export const userSlice = createSlice({
     loginStart: (state) => {
       state.isFetching = true;
     },
-    loginSuccess: (state, action) => {
+    loginSuccess: (state, action: PayloadAction<string>) => {
       state.isFetching = false;
-      state.currentUser = action.payload;
+      state.currentUserId = action.payload;
     },
     loginFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
     logout: (state) => {
-      state.currentUser = null;
+      state.currentUserId = "";
     },
   },
 });
