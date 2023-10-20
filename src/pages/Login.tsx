@@ -68,9 +68,12 @@ const Login = () => {
             >
               Log In
             </button>
-            <div>
-              <div>
-                <p>or</p>
+            {error && <p className="text-red-700">Login failure</p>}
+            <div className="flex items-center justify-center relative py-2">
+              <div className="w-1/2 h-[1px] bg-black">
+                <p className="text-center text-sm text-gray-600 absolute bg-slate-300 px-1">
+                  or
+                </p>
               </div>
               <button
                 onClick={signInWithGoogle}
@@ -79,7 +82,17 @@ const Login = () => {
                 Sign In with Google
               </button>
             </div>
-            <p>No account? Sign up for free.</p>
+            <div className="flex justify-around">
+              <p className="text-sm font-semibold text-[#614623]">
+                No account?
+              </p>
+
+              <Link to="/register" className="text-brown-700">
+                <button className="text-base rounded-lg p-1 my-3 bg-white font-semibold text-[#273575] border-[1px] border-[#0a444e]">
+                  Sign up
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
