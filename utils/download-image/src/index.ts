@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import fetch from "cross-fetch";
-//import fetch from "node-fetch";
+import items from "./items.json";
 
 async function download() {
   const url =
@@ -13,6 +13,14 @@ async function download() {
   );
 }
 
-download().then(console.log).catch(console.error);
+//download().then(console.log).catch(console.error);
+
+function parseJson() {
+  for (let i = 0; i < items.length; i++) {
+    console.log(items[i].name);
+  }
+}
+
+parseJson();
 
 console.log("NodeJS app running...");
