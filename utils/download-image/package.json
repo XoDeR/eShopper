@@ -16,6 +16,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "cross-fetch": "^4.0.0"
+    "cross-fetch": "^4.0.0",
+    "firebase-admin": "^11.11.0"
   }
 }

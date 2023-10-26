@@ -2,6 +2,10 @@ import * as fs from "fs";
 import fetch from "cross-fetch";
 import items from "./items.json";
 
+import * as admin from "firebase-admin";
+import * as util from "util";
+import * as stream from "stream";
+
 async function download() {
   const url =
     "https://jb-ph-cdn.tillster.com/menu-images/prod/e39c15e2-e026-4676-be4d-f645c9c1887d.png";
@@ -88,8 +92,51 @@ function parseJson() {
   }
 }
 
-parseJson();
+// Initialize Firebase
+const serviceAccount = require("../e-shopper-r-ts-firebase-adminsdk-ihndo-0d935c50a0.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: "gs://e-shopper-r-ts.appspot.com",
+});
 
-writeJson();
+const bucket = admin.storage().bucket();
+
+const filePath = "./JollibeeChickenjoy.png";
+const destination = "JollibeeChickenjoy.png";
+
+async function uploadFile(filePath: string, destination: string) {
+  // Converts fs.readFile into Promise version of same
+  const readFile = util.promisify(fs.readFile);
+  const fileBuffer = await readFile(filePath);
+
+  const file = bucket.file(destination);
+
+  const streamIntoStorage = new stream.PassThrough();
+  streamIntoStorage.end(fileBuffer);
+
+  return new Promise((resolve, reject) => {
+    streamIntoStorage
+      .pipe(file.createWriteStream())
+      .on("error", reject)
+      .on("finish", async () => {
+        // The file upload is complete.
+        console.log("File uploaded.");
+
+        // Get the download URL
+        const downloadURLs = await file.getSignedUrl({
+          action: "read",
+          expires: "03-09-2491",
+        });
+        console.log("File Download URL: ", downloadURLs[0]);
+        resolve(downloadURLs[0]);
+      });
+  });
+}
+
+uploadFile(filePath, destination).catch(console.error);
+
+//parseJson();
+
+//writeJson();
 
 console.log("NodeJS app running...");
