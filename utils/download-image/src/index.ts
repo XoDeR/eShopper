@@ -34,10 +34,43 @@ function findDuplicates(arr: string[]): string[] {
   return result;
 }
 
+function writeJson() {
+  const itemsNewJson = JSON.stringify(itemsNew);
+
+  fs.writeFile("./src/itemsNew.json", itemsNewJson, (err) => {
+    if (err) {
+      console.log("Error writing file:", err);
+    } else {
+      console.log("Successfully wrote file");
+    }
+  });
+}
+
+type Item = {
+  name: string;
+  desc: string;
+  img: string;
+  categories: string[];
+  price: number;
+  inStock: boolean;
+};
+
+const itemsNew: Item[] = [];
+
 function parseJson() {
   let arr: string[] = [];
   for (let i = 0; i < items.length; i++) {
     //console.log(items[i].name);
+    const item = items[i];
+    const itemNew = {
+      name: item.name,
+      desc: item.desc,
+      img: item.img,
+      categories: item.categories,
+      price: item.price,
+      inStock: item.inStock,
+    };
+    itemsNew.push(itemNew);
     arr.push(createUniqueFileName(items[i].name));
   }
 
@@ -49,8 +82,14 @@ function parseJson() {
   for (let i = 0; i < arr.length; i++) {
     console.log(arr[i]);
   }
+
+  for (let i = 0; i < itemsNew.length; i++) {
+    console.log(itemsNew[i].img);
+  }
 }
 
 parseJson();
+
+writeJson();
 
 console.log("NodeJS app running...");
