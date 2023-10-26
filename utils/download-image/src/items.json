@@ -61,7 +61,7 @@
   },
   {
     "_id": "63ba0371802665536580fb12",
-    "name": "555",
+    "name": "Sardines 555",
     "desc": "555 Sardines is the “Super Ulam Pinoy” because it is rich in calcium for stronger bones, protein for muscle building, lycopene for cancer prevention, iodine and vitamin D.",
     "img": "https://ipcdn.freshop.com/resize?url=https://images.freshop.com/00748485200019/109d77d4d781d59b3ebfe8d7abeeb8b5_large.png&width=256&type=webp&quality=80",
     "categories": ["Grocery"],
@@ -621,114 +621,6 @@
     "inStock": true,
     "createdAt": "2023-01-12T07:44:31.401Z",
     "updatedAt": "2023-01-12T07:44:31.401Z",
-    "__v": 0
-  },
-  {
-    "_id": "63c15e20586e070a77292d42",
-    "name": "Lucky me",
-    "desc": "Instant noodles",
-    "img": "https://firebasestorage.googleapis.com/v0/b/epasabuymo.appspot.com/o/1673616926267chicken-na-chicken.jpg?alt=media&token=51c131ca-a041-4af2-8cc8-780014e6425c",
-    "categories": ["Noodles"],
-    "price": 20,
-    "inStock": true,
-    "createdAt": "2023-01-13T13:35:28.949Z",
-    "updatedAt": "2023-01-13T13:35:28.949Z",
-    "__v": 0
-  },
-  {
-    "_id": "63c15e225a07b3eb7f2a4e93",
-    "name": "Lucky me",
-    "desc": "Instant noodles",
-    "img": "https://firebasestorage.googleapis.com/v0/b/epasabuymo.appspot.com/o/1673616927242chicken-na-chicken.jpg?alt=media&token=ac5fd13c-80f9-4108-89be-cb1df65af760",
-    "categories": ["Noodles"],
-    "price": 20,
-    "inStock": true,
-    "createdAt": "2023-01-13T13:35:30.185Z",
-    "updatedAt": "2023-01-13T13:35:30.185Z",
-    "__v": 0
-  },
-  {
-    "_id": "63c15e22586e070a77292d44",
-    "name": "Lucky me",
-    "desc": "Instant noodles",
-    "img": "https://firebasestorage.googleapis.com/v0/b/epasabuymo.appspot.com/o/1673616927530chicken-na-chicken.jpg?alt=media&token=f29f61b1-68bc-4829-931b-b32c5464cca8",
-    "categories": ["Noodles"],
-    "price": 20,
-    "inStock": true,
-    "createdAt": "2023-01-13T13:35:30.197Z",
-    "updatedAt": "2023-01-13T13:35:30.197Z",
-    "__v": 0
-  },
-  {
-    "_id": "63c15e225a07b3eb7f2a4e95",
-    "name": "Lucky me",
-    "desc": "Instant noodles",
-    "img": "https://firebasestorage.googleapis.com/v0/b/epasabuymo.appspot.com/o/1673616927994chicken-na-chicken.jpg?alt=media&token=fd6111c5-1967-4ecd-9f1e-defcfcead3d4",
-    "categories": ["Noodles"],
-    "price": 20,
-    "inStock": true,
-    "createdAt": "2023-01-13T13:35:30.407Z",
-    "updatedAt": "2023-01-13T13:35:30.407Z",
-    "__v": 0
-  },
-  {
-    "_id": "63c15e22586e070a77292d46",
-    "name": "Lucky me",
-    "desc": "Instant noodles",
-    "img": "https://firebasestorage.googleapis.com/v0/b/epasabuymo.appspot.com/o/1673616928387chicken-na-chicken.jpg?alt=media&token=3dcad91e-af80-4cb8-a460-76538d9e7601",
-    "categories": ["Noodles"],
-    "price": 20,
-    "inStock": true,
-    "createdAt": "2023-01-13T13:35:30.410Z",
-    "updatedAt": "2023-01-13T13:35:30.410Z",
-    "__v": 0
-  },
-  {
-    "_id": "63c15e233cc4094514ddf65e",
-    "name": "Lucky me",
-    "desc": "Instant noodles",
-    "img": "https://firebasestorage.googleapis.com/v0/b/epasabuymo.appspot.com/o/1673616927778chicken-na-chicken.jpg?alt=media&token=e7bacb7e-25a4-47f1-8418-9e5bf2e4e4e5",
-    "categories": ["Noodles"],
-    "price": 20,
-    "inStock": true,
-    "createdAt": "2023-01-13T13:35:31.696Z",
-    "updatedAt": "2023-01-13T13:35:31.696Z",
-    "__v": 0
-  },
-  {
-    "_id": "63c15e2450318d19b456ce93",
-    "name": "Chicken",
-    "desc": "Noodles",
-    "img": "https://firebasestorage.googleapis.com/v0/b/epasabuymo.appspot.com/o/1673617261581Master.webp?alt=media&token=36217a4a-788d-4e03-a8d6-da1ccc018a16",
-    "categories": ["Noodles"],
-    "price": 20,
-    "inStock": true,
-    "createdAt": "2023-01-13T13:35:32.082Z",
-    "updatedAt": "2023-01-13T13:41:05.936Z",
-    "__v": 0
-  },
-  {
-    "_id": "63c15f8750318d19b456ce9e",
-    "name": "test",
-    "desc": "test",
-    "img": "https://firebasestorage.googleapis.com/v0/b/epasabuymo.appspot.com/o/1673617283082Master.webp?alt=media&token=c2923642-f18f-453f-be0a-cef9970682ed",
-    "categories": ["test"],
-    "price": 20,
-    "inStock": true,
-    "createdAt": "2023-01-13T13:41:27.518Z",
-    "updatedAt": "2023-01-13T13:41:27.518Z",
-    "__v": 0
-  },
-  {
-    "_id": "63c7389d122a9cf13a9d454c",
-    "name": "test",
-    "desc": "test",
-    "img": "https://firebasestorage.googleapis.com/v0/b/epasabuymo.appspot.com/o/1674000539588Master.webp?alt=media&token=86be77b6-c180-459f-84f2-b4eedead4666",
-    "categories": ["test"],
-    "price": 20,
-    "inStock": true,
-    "createdAt": "2023-01-18T00:09:01.804Z",
-    "updatedAt": "2023-01-18T00:09:01.804Z",
     "__v": 0
   }
 ]
