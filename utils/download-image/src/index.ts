@@ -6,10 +6,11 @@ import * as admin from "firebase-admin";
 import * as util from "util";
 import * as stream from "stream";
 
-async function download() {
-  const url =
-    "https://jb-ph-cdn.tillster.com/menu-images/prod/e39c15e2-e026-4676-be4d-f645c9c1887d.png";
-  const outImagePath = "./JollibeeChickenjoy.png";
+const url =
+  "https://jb-ph-cdn.tillster.com/menu-images/prod/e39c15e2-e026-4676-be4d-f645c9c1887d.png";
+const outImagePath = "./JollibeeChickenjoy.png";
+
+async function download(url: string, outImagePath: string) {
   const response = await fetch(url);
   const buffer = await response.arrayBuffer();
   fs.writeFile(outImagePath, Buffer.from(buffer), () =>
@@ -38,6 +39,55 @@ function findDuplicates(arr: string[]): string[] {
   return result;
 }
 
+type Item = {
+  name: string;
+  desc: string;
+  img: string;
+  categories: string[];
+  price: number;
+  inStock: boolean;
+  imgName: string;
+};
+
+const itemsNew: Item[] = [];
+
+async function parseJson() {
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+
+    const imgName = createUniqueFileName(item.name) + "." + item.ext;
+
+    // download image
+    const url = item.img;
+    const outImagePath = "./images/" + imgName;
+    await download(url, outImagePath);
+
+    // upload image
+    const filePath = outImagePath;
+    const destination = imgName;
+    let uploadedUrl: string = "";
+    try {
+      uploadedUrl = await uploadFile(filePath, destination);
+      console.log("The download URL is", uploadedUrl);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+
+    const itemNew = {
+      name: item.name,
+      desc: item.desc,
+      img: uploadedUrl,
+      categories: item.categories,
+      price: item.price,
+      inStock: item.inStock,
+      imgName,
+    };
+    itemsNew.push(itemNew);
+  }
+
+  writeJson();
+}
+
 function writeJson() {
   const itemsNewJson = JSON.stringify(itemsNew);
 
@@ -50,48 +100,6 @@ function writeJson() {
   });
 }
 
-type Item = {
-  name: string;
-  desc: string;
-  img: string;
-  categories: string[];
-  price: number;
-  inStock: boolean;
-};
-
-const itemsNew: Item[] = [];
-
-function parseJson() {
-  let arr: string[] = [];
-  for (let i = 0; i < items.length; i++) {
-    //console.log(items[i].name);
-    const item = items[i];
-    const itemNew = {
-      name: item.name,
-      desc: item.desc,
-      img: item.img,
-      categories: item.categories,
-      price: item.price,
-      inStock: item.inStock,
-    };
-    itemsNew.push(itemNew);
-    arr.push(createUniqueFileName(items[i].name));
-  }
-
-  arr.sort();
-
-  if (hasDuplicates(arr)) {
-    console.error("There are duplicate names");
-  }
-  for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
-  }
-
-  for (let i = 0; i < itemsNew.length; i++) {
-    console.log(itemsNew[i].img);
-  }
-}
-
 // Initialize Firebase
 const serviceAccount = require("../e-shopper-r-ts-firebase-adminsdk-ihndo-0d935c50a0.json");
 admin.initializeApp({
@@ -101,10 +109,10 @@ admin.initializeApp({
 
 const bucket = admin.storage().bucket();
 
-const filePath = "./JollibeeChickenjoy.png";
-const destination = "JollibeeChickenjoy.png";
-
-async function uploadFile(filePath: string, destination: string) {
+async function uploadFile(
+  filePath: string,
+  destination: string
+): Promise<string> {
   // Converts fs.readFile into Promise version of same
   const readFile = util.promisify(fs.readFile);
   const fileBuffer = await readFile(filePath);
@@ -133,10 +141,10 @@ async function uploadFile(filePath: string, destination: string) {
   });
 }
 
-uploadFile(filePath, destination).catch(console.error);
-
 //parseJson();
 
-//writeJson();
+const filePath = "./images/JollibeeChickenjoy.png";
+const destination = "JollibeeChickenjoy.png";
+//uploadFile(filePath, destination).catch(console.error);
 
 console.log("NodeJS app running...");
