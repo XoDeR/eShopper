@@ -52,9 +52,7 @@ type Item = {
 const itemsNew: Item[] = [];
 
 async function parseJson() {
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
-
+  for (const item of items) {
     const imgName = createUniqueFileName(item.name) + "." + item.ext;
 
     // download image
@@ -84,6 +82,8 @@ async function parseJson() {
     };
     itemsNew.push(itemNew);
   }
+
+  itemsNew.sort((a, b) => a.imgName.localeCompare(b.imgName));
 
   writeJson();
 }
